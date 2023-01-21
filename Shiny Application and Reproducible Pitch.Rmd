@@ -1,0 +1,58 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Alexis Parker"
+date: "2023-01-20"
+output: ioslides_presentation
+---
+
+## Information About App
+
+```{r, warning=FALSE, results='hide', message=FALSE, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+
+```
+
+-   Dataset: diamonds {ggplot2}
+-   There are seven variables
+    -   carat, depth, table, price
+
+    -   x, y, z
+-   There are three inputs
+    -   X Variable
+
+    -   Y Variable
+
+    -   Number of Clusters
+
+## How to Use the App
+
+-   Input
+    -   Select an X variable ()
+
+    -   Select an Y variable
+
+    -   Select the number of clusters (Min = 1 and Max = 5)
+-   Output
+    -   A K-means clustering plot (Shown in the next slide)
+
+## Plot Preview
+
+```{r, results='hide', echo=FALSE}
+data("diamonds")
+vars <- names(diamonds[,c(-2,-3,-4)])
+DiamondData <- diamonds[, c(vars)]
+clusters <- kmeans(DiamondData, centers = 3)
+```
+
+```{r}
+plot(DiamondData$carat, DiamondData$price, col = clusters$cluster, 
+     pch = 19, cex = 3, xlab = "carat", ylab = "price")  
+palette(c("#11ACEF","#037A03","#D10D0D"))
+```
+
+## Link to App and Github
+
+App: [Click Here](https://tqzbv6-alexis-parker.shinyapps.io/Kmeans-Cluster/?_ga=2.219751257.134192892.1674251573-720519868.1674251573)
+
+Git: [Click Here](https://github.com/aparker03/Shiny-Application-and-Reproducible-Pitch)
